@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PowerPet：把临时文件、AI 对话和桌面工具放在一起。适用于 Windows 的开源桌面助手。">
+  <meta name="color-scheme" content="light">
+  <title>PowerPet 0.1.0 — 桌面上的小小工作站</title>
+  <link rel="icon" href="power_pet.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#main">跳到正文</a>
+  <header class="nav wrap">
+    <a class="brand" href="#"><img src="power_pet.svg" alt="" width="40" height="40">PowerPet<span>桌面助手</span></a>
+    <nav aria-label="主导航"><a href="#features">能做什么</a><a href="#start">开始使用</a><a href="https://github.com/DYF7812/PowerPet-Releases">GitHub ↗</a></nav>
+  </header>
+  <main id="main">
+    <section class="hero wrap">
+      <div class="intro">
+        <p class="eyebrow"><span class="dot"></span> Windows 桌面 · 开源项目</p>
+        <h1>手边的文件，<br>有个<span class="highlight">临时的家。</span></h1>
+        <p class="lead">文件先放一放，灵感接着聊。<br>把临时文件、AI 对话和桌面工具，<br class="desktop-break">收在桌面上的一个小小工作站。</p>
+        <div class="actions"><a class="button primary" href="#download">获取 PowerPet <span aria-hidden="true">↓</span></a><a class="text-link" href="#start">先看看怎么用 <span aria-hidden="true">↗</span></a></div>
+        <p class="fine">Windows 10 1903+ / 11 · x64 · MIT 开源</p>
+      </div>
+      <div class="scene" aria-label="文件中转流程示意，不是软件截图">
+        <div class="scene-top"><span>你的临时工作区</span><span class="scene-label">流程示意</span></div>
+        <div class="paper paper-back"><span class="file-type">TXT</span><span>刚想到的点子.txt</span><small>把想法先记下来</small></div>
+        <div class="paper paper-front"><span class="file-type blue">DOC</span><span>待整理的文档.docx</span><small>让文件停靠在手边</small></div>
+        <div class="tray"><span class="tray-mark">POWERPET</span><div class="tray-line"></div><span>中转一下，再回到该去的地方。</span></div>
+        <div class="pet-note"><img src="power_pet.svg" alt="PowerPet 桌面宠物" width="104" height="104"><span>整理好了，就送回去。</span></div>
+        <div class="flow"><span>拖入文件</span><b aria-hidden="true">→</b><span>浏览 / 整理</span><b aria-hidden="true">→</b><span>还原 / 导出</span></div>
+      </div>
+    </section>
+    <aside class="safety wrap"><span class="safety-icon" aria-hidden="true">!</span><p><strong>先认识一个重要习惯：拖入默认是剪切。</strong>文件会离开原位置；正常退出会进入还原流程。请先用测试文件体验，中转站不替代长期备份。</p></aside>
+    <section id="features" class="features wrap">
+      <div class="section-title"><p class="eyebrow">留在手边，少一点切换</p><h2>日常小事，在这里接上。</h2></div>
+      <div class="feature-grid">
+        <article><span class="feature-symbol" aria-hidden="true">▤</span><h3>文件，临时停靠</h3><p>拖入文件与文件夹，搜索、预览、整理，再还原原路径或移动到指定目录。图片、文本、PDF 和 Office 静态文字都能看看。</p><span class="tag">文件中心</span></article>
+        <article><span class="feature-symbol" aria-hidden="true">✳</span><h3>想法，接着聊</h3><p>连接自己的模型服务，带着文件提问、查询公开网页。按会话配置审批与文件范围，让工具使用有明确边界。</p><span class="tag">需要自己的模型凭据</span></article>
+        <article><span class="feature-symbol" aria-hidden="true">⌘</span><h3>工具，随手用</h3><p>区域截图、Windows OCR、手动滚动截图和截图翻译。明暗主题、快捷键与可选桌面宠物，按习惯调整。</p><span class="tag">本地翻译需另装组件</span></article>
+      </div>
+    </section>
+    <section id="start" class="start wrap">
+      <div><p class="eyebrow">第一次见面</p><h2>从一个测试文件开始。</h2><p class="muted">花一分钟，熟悉文件怎么来、怎么回。</p></div>
+      <ol class="steps">
+        <li><span>01</span><div><h3>安装 PowerPet</h3><p>下载安装包并按向导操作，无需另装 Python。安装或升级前，请先从托盘正常退出旧版本。</p></div></li>
+        <li><span>02</span><div><h3>先读“文件安全”</h3><p>打开设置中的文件安全页。拖入一个测试文件，再体验原路径还原。</p></div></li>
+        <li><span>03</span><div><h3>用托盘菜单正常退出</h3><p>关闭窗口只是隐藏。退出时完成还原；截图和粘贴文字等新文件，请选择保存位置或明确删除。</p></div></li>
+      </ol>
+    </section>
+    <section class="faq wrap" aria-labelledby="faq-title">
+      <h2 id="faq-title">还有几件你可能想知道的事。</h2>
+      <details><summary>需要联网或登录吗？</summary><p>文件中转与本机预览不需要模型凭据。AI 对话需要你配置服务商的 API Key / Token；费用与服务规则由所选服务商决定。</p></details>
+      <details><summary>哪些内容会发送到网上？</summary><p>AI 会发送对话与使用的文件内容；联网搜索发送查询词，网页读取请求目标网址。MyMemory 在线翻译经你同意后发送 OCR 文字。本地翻译需要另行提供并安装可信组件，当前未提供正式组件下载。启用的 CLI / PowerShell 使用当前 Windows 用户权限，直接改动不进入中转站恢复流程。</p></details>
+      <details><summary>卸载前，怎么取回文件？</summary><p>先停止任务、处理回收站、还原或导出中转站文件，再通过托盘菜单退出。卸载保留应用数据；确认文件完整取回之前，请不要手动删除数据目录。</p></details>
+      <details><summary>当前有哪些限制？</summary><p>0.1.0 为首次公开版本，干净 Windows、跨卷、多显示器及真实模型场景仍待验收。Office 为静态文字预览；尚不支持屏幕录制、全局取词和自定义宠物外观。请以仓库的版本说明和验收记录为准。</p></details>
+    </section>
+    <section id="download" class="download wrap">
+      <div><p class="eyebrow">POWERPET 0.1.0</p><h2>给手边的小事，留个位置。</h2><p>Windows x64 · 压缩安装包 · 0.1.0</p><p class="download-note">未签名。部分实机验收尚未完成，详情见版本说明。</p></div>
+      <div class="download-options"><a class="button primary" href="https://github.com/DYF7812/PowerPet-Releases/releases/download/v0.1.0/PowerPet-0.1.0-Setup.exe">下载安装包 <span aria-hidden="true">↓</span></a><a href="https://github.com/DYF7812/PowerPet-Releases/releases/download/v0.1.0/SHA256SUMS.txt">SHA-256 校验</a><a href="https://github.com/DYF7812/PowerPet-Releases/releases/tag/v0.1.0">版本说明与源码 ↗</a></div>
+    </section>
+  </main>
+  <footer class="wrap"><span>© 2026 PowerPet contributors</span><div><a href="https://github.com/DYF7812/PowerPet-Releases/blob/codex/release-page/LICENSE">MIT 许可证</a><a href="#faq-title">隐私与使用边界</a><a href="https://github.com/DYF7812/PowerPet-Releases/issues">反馈问题 ↗</a></div></footer>
+</body>
+</html>

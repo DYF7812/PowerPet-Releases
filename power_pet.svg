@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="shell" x1="10" y1="8" x2="54" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1A5960"/>
+      <stop offset="1" stop-color="#12333A"/>
+    </linearGradient>
+    <linearGradient id="signal" x1="14" y1="12" x2="48" y2="52" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#69E2D4"/>
+      <stop offset="1" stop-color="#20A99F"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="29" fill="#E8F7F5"/>
+  <circle cx="32" cy="32" r="26" fill="url(#shell)"/>
+  <path d="M14 29c0-8.3 6.7-15 15-15h6c8.3 0 15 6.7 15 15v11c0 5.5-4.5 10-10 10H24c-5.5 0-10-4.5-10-10V29Z" fill="url(#signal)"/>
+  <path d="M22 20h15l7 7v14a4 4 0 0 1-4 4H22a4 4 0 0 1-4-4V24a4 4 0 0 1 4-4Z" fill="#F8FEFD"/>
+  <path d="M37 20v7h7" fill="#C6ECE7"/>
+  <path d="M24 32h16M24 37h11" stroke="#167B75" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M12 30v7M52 30v7" stroke="#F8FEFD" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="55" r="2.5" fill="#69E2D4"/>
+</svg>

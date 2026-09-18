@@ -44,7 +44,7 @@ h1 { font-size: clamp(38px, 4.2vw, 58px); line-height: 1.32; letter-spacing: -2p
 .text-link { font-size: 13px; color: var(--blue); line-height: 1.8; }
 .fine { font-size: 11px; color: var(--muted); margin: 22px 0 0; }
 
-.workspace-demo { margin: 0; padding: 22px; border-radius: 20px; background: var(--soft-blue); border: 1px solid #d7e4ed; transform: rotate(1deg); }
+.workspace-demo { margin: 0; padding: 22px; border-radius: 20px; background: var(--soft-blue); border: 1px solid #d7e4ed; }
 .workspace-demo figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
 .demo-label { font-size: 10px; border: 1px solid #bed1df; border-radius: 20px; padding: 4px 8px; }
 .source-paths { display: flex; flex-wrap: wrap; gap: 7px; margin: 23px 0 16px; }
@@ -135,7 +135,7 @@ footer div { display: flex; align-items: center; flex-wrap: wrap; gap: 22px; }
 @media (max-width: 1000px) {
   .wrap { width: calc(100% - 48px); }
   .hero { gap: 28px; grid-template-columns: .85fr 1.15fr; padding-block: 54px; }
-  .workspace-demo { padding: 16px; transform: none; }
+  .workspace-demo { padding: 16px; }
   .brand span { display: none; }
   .feature-grid { gap: 22px; }
   .feature-grid article + article { padding-left: 22px; }

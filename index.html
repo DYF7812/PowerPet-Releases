@@ -11,8 +11,8 @@
   <meta property="og:url" content="https://dyf7812.github.io/PowerPet-Releases/">
   <title>PowerPet — AI 文件管理助手</title>
   <link rel="icon" href="power_pet.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=demo-20260918">
-  <script src="demo.js?v=demo-20260918" defer></script>
+  <link rel="stylesheet" href="style.css?v=demo-polish-20260918">
+  <script src="demo.js?v=demo-polish-20260918" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">跳到正文</a>
@@ -39,7 +39,7 @@
         <p class="fine">Windows 10 1903+ / 11 · x64 · MIT 开源</p>
       </div>
       <figure class="workspace-demo" aria-labelledby="demo-caption">
-        <figcaption id="demo-caption"><span>先试一试，再开始使用</span><span class="demo-label">可交互演示 · 示例数据</span></figcaption>
+        <figcaption id="demo-caption"><span>从一份文件，开始体验</span><span class="demo-label">可交互演示 · 示例数据</span></figcaption>
         <div class="demo-scenarios" aria-label="选择体验场景">
           <button type="button" data-scenario="summary" aria-pressed="true">总结文件</button>
           <button type="button" data-scenario="rename" aria-pressed="false">重命名审批</button>
@@ -47,15 +47,10 @@
           <button type="button" id="demo-reset">重置 ↺</button>
         </div>
         <div class="demo-window">
-          <div class="demo-title"><img src="power_pet.svg" alt="" width="19" height="19"><strong>PowerPet 助手</strong><span aria-hidden="true">—　□　×</span></div>
+          <div class="demo-title"><img src="power_pet.svg" alt="" width="28" height="28"><div><strong>PowerPet</strong><small>你的文件助手</small></div><span class="demo-workspace-badge">示例工作区</span></div>
           <div class="demo-body">
-            <div class="demo-rail" aria-label="演示快捷操作">
-              <button type="button" id="demo-chat-focus" aria-label="前往消息输入框" title="对话">▤</button>
-              <button type="button" id="demo-files-focus" aria-label="前往文件搜索" title="文件中心">▱</button>
-              <span class="rail-bottom" aria-hidden="true">☼</span>
-            </div>
             <div class="demo-chat">
-              <div class="demo-tab"><span id="demo-session">整理会议记录</span><span>体验会话</span></div>
+              <div class="demo-tab"><span id="demo-session">整理会议记录</span><span>交互体验</span></div>
               <div class="demo-transcript" id="demo-transcript" aria-label="演示对话记录">
                 <p class="demo-welcome"><strong>把文件和问题，放在一起。</strong><span>点击右侧文件查看内容，再发送下方示例消息。也可以切换上方场景。</span></p>
               </div>
@@ -67,7 +62,7 @@
               <div class="demo-statusbar"><span>示例中转站 · 重命名需审批</span><span id="demo-status" role="status" aria-live="polite">● 等待体验</span></div>
             </div>
             <aside class="demo-files" aria-label="演示文件中心">
-              <div class="file-heading"><strong>文件中心</strong><span>中转站</span></div>
+              <div class="file-heading"><strong>文件中心</strong><span>3 个示例</span></div>
               <div class="file-views" aria-label="文件显示方式"><button type="button" data-view="list" aria-pressed="true">列表</button><button type="button" data-view="grid" aria-pressed="false">缩略图</button><button type="button" id="demo-preview-toggle" aria-expanded="true" aria-controls="demo-preview">预览</button></div>
               <label class="sr-only" for="demo-search">搜索示例文件</label><input type="search" id="demo-search" placeholder="搜索示例文件…" autocomplete="off">
               <div class="demo-file-list" id="demo-file-list" aria-label="示例文件"></div>

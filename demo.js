@@ -60,6 +60,7 @@
     if (approval) approval.remove();
     approval = null;
     if (tool) tool.classList.remove('pending');
+    transcript.querySelector('.is-streaming')?.classList.remove('is-streaming');
     setBusy(false);
   }
 
@@ -79,6 +80,10 @@
     } else {
       preview.textContent = selected.content;
     }
+    if (!reducedMotion.matches) {
+      preview.getAnimations().forEach((animation) => animation.cancel());
+      preview.animate([{ opacity: .3, transform: 'translateY(5px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 260, easing: 'ease-out' });
+    }
   }
 
   function renderFiles() {
@@ -91,7 +96,9 @@
       button.setAttribute('aria-pressed', String(file === selected));
       button.setAttribute('aria-label', `预览 ${file.name}`);
       button.title = file.name;
-      button.append(element('span', `file-type${file.type === 'PNG' ? ' image' : ''}`, file.type), element('span', '', file.name));
+      const description = element('span', 'file-description');
+      description.append(element('strong', '', file.name), element('small', '', file.type === 'PNG' ? '图片素材 · 可识字' : '文本资料 · 可总结'));
+      button.append(element('span', `file-type${file.type === 'PNG' ? ' image' : ''}`, file.type), description);
       button.addEventListener('click', () => {
         selected = file;
         // 保留原按钮与键盘焦点，只更新选择状态。
@@ -108,16 +115,17 @@
   }
 
   function showAnswer(text) {
-    const answer = element('p', 'demo-answer');
+    const answer = element('p', 'demo-answer is-streaming');
     transcript.append(answer);
     let length = 0;
     function tick() {
-      length = reducedMotion.matches ? text.length : Math.min(length + 4, text.length);
+      length = reducedMotion.matches ? text.length : Math.min(length + 2, text.length);
       answer.textContent = text.slice(0, length);
       scrollConversation();
       if (length < text.length) {
-        timer = setTimeout(tick, 28);
+        timer = setTimeout(tick, 20);
       } else {
+        answer.classList.remove('is-streaming');
         setBusy(false);
         status('演示完成');
       }
@@ -173,8 +181,15 @@
     find('search').value = '';
     transcript.replaceChildren();
     const welcome = element('p', 'demo-welcome');
-    welcome.append(element('strong', '', name === 'rename' ? '执行之前，由你决定。' : '把文件和问题，放在一起。'),
-      element('span', '', '点击文件查看内容，再发送下方示例消息。你也可以切换上方场景，体验不同流程。'));
+    const emblem = element('img', 'welcome-emblem');
+    emblem.src = 'power_pet.svg';
+    emblem.alt = '';
+    welcome.append(emblem, element('small', 'welcome-eyebrow', '文件就位，灵感开场'),
+      element('strong', '', name === 'rename' ? '每一次修改，都由你决定。' : '让文件里的信息，清晰起来。'),
+      element('span', '', '预览一份资料，发送一个想法。\n从下方的示例消息开始，看看助手如何接手。'));
+    const steps = element('span', 'welcome-steps');
+    steps.append(element('span', '', '选择文件'), element('span', '', '发送需求'), element('span', '', '查看结果'));
+    welcome.append(steps);
     transcript.append(welcome);
     root.querySelectorAll('[data-scenario]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.scenario === name)));
     renderFiles();
@@ -247,7 +262,5 @@
     input.value = `@${selected.name} ${selected.type === 'PNG' ? '识别截图中的文字。' : '帮我总结这份文件。'}`;
     input.focus();
   });
-  find('chat-focus').addEventListener('click', () => input.focus());
-  find('files-focus').addEventListener('click', () => find('search').focus());
   startScenario('summary');
 })();

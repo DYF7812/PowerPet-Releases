@@ -11,7 +11,8 @@
   <meta property="og:url" content="https://dyf7812.github.io/PowerPet-Releases/">
   <title>PowerPet — AI 文件管理助手</title>
   <link rel="icon" href="power_pet.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css?v=21553f1d5d84">
+  <link rel="stylesheet" href="style.css?v=demo-20260918">
+  <script src="demo.js?v=demo-20260918" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">跳到正文</a>
@@ -38,28 +39,44 @@
         <p class="fine">Windows 10 1903+ / 11 · x64 · MIT 开源</p>
       </div>
       <figure class="workspace-demo" aria-labelledby="demo-caption">
-        <figcaption id="demo-caption"><span>你的文件，与助手一起处理</span><span class="demo-label">交互示意 · 非软件截图</span></figcaption>
-        <div class="source-paths"><span>文档</span><span>下载</span><span>D:\项目资料</span><span>其他授权目录</span></div>
+        <figcaption id="demo-caption"><span>先试一试，再开始使用</span><span class="demo-label">可交互演示 · 示例数据</span></figcaption>
+        <div class="demo-scenarios" aria-label="选择体验场景">
+          <button type="button" data-scenario="summary" aria-pressed="true">总结文件</button>
+          <button type="button" data-scenario="rename" aria-pressed="false">重命名审批</button>
+          <button type="button" data-scenario="ocr" aria-pressed="false">截图识字</button>
+          <button type="button" id="demo-reset">重置 ↺</button>
+        </div>
         <div class="demo-window">
-          <div class="demo-title"><img src="power_pet.svg" alt="" width="25" height="25"><strong>PowerPet 助手</strong><span>文件工作区</span></div>
+          <div class="demo-title"><img src="power_pet.svg" alt="" width="19" height="19"><strong>PowerPet 助手</strong><span aria-hidden="true">—　□　×</span></div>
           <div class="demo-body">
+            <div class="demo-rail" aria-label="演示快捷操作">
+              <button type="button" id="demo-chat-focus" aria-label="前往消息输入框" title="对话">▤</button>
+              <button type="button" id="demo-files-focus" aria-label="前往文件搜索" title="文件中心">▱</button>
+              <span class="rail-bottom" aria-hidden="true">☼</span>
+            </div>
             <div class="demo-chat">
-              <p class="demo-user">阅读中转站里的会议记录，<br>帮我整理主要内容和待办事项。</p>
-              <p class="assistant-label">PowerPet</p>
-              <div class="demo-tool"><span class="tool-mark" aria-hidden="true">↳</span><div><strong>读取文件</strong><small>会议记录.txt · 按会话权限执行</small></div></div>
-              <div class="demo-answer"><strong>这次会议的三个重点</strong><ul><li>确认项目的功能范围</li><li>整理本周待办事项</li><li>准备下一次评审材料</li></ul></div>
-              <p class="demo-composer"><span>@ 文件</span><span>/ 工具</span><span class="composer-hint">继续提问…</span></p>
+              <div class="demo-tab"><span id="demo-session">整理会议记录</span><span>体验会话</span></div>
+              <div class="demo-transcript" id="demo-transcript" aria-label="演示对话记录">
+                <p class="demo-welcome"><strong>把文件和问题，放在一起。</strong><span>点击右侧文件查看内容，再发送下方示例消息。也可以切换上方场景。</span></p>
+              </div>
+              <form class="demo-composer" id="demo-form">
+                <label class="sr-only" for="demo-message">演示消息</label>
+                <textarea id="demo-message" rows="2" maxlength="240" aria-describedby="demo-disclaimer">@会议记录.txt 帮我整理主要内容和待办事项。</textarea>
+                <div class="composer-actions"><button type="button" id="demo-mention" title="引用当前选中的文件">@ 文件</button><span>演示模型</span><button type="button" id="demo-stop" disabled>停止</button><button type="submit" id="demo-send">发送 ↑</button></div>
+              </form>
+              <div class="demo-statusbar"><span>示例中转站 · 重命名需审批</span><span id="demo-status" role="status" aria-live="polite">● 等待体验</span></div>
             </div>
-            <div class="demo-files">
-              <p class="file-heading">文件中心 <span>中转站</span></p>
-              <div class="demo-file selected"><span class="file-type">TXT</span><span>会议记录.txt<small>已建立备份</small></span></div>
-              <div class="demo-file"><span class="file-type pdf">PDF</span><span>参考资料.pdf</span></div>
-              <div class="demo-file"><span class="file-type image">PNG</span><span>页面截图.png</span></div>
-              <p class="file-footnote">临时集中处理<br>完成后还原或导出</p>
-            </div>
+            <aside class="demo-files" aria-label="演示文件中心">
+              <div class="file-heading"><strong>文件中心</strong><span>中转站</span></div>
+              <div class="file-views" aria-label="文件显示方式"><button type="button" data-view="list" aria-pressed="true">列表</button><button type="button" data-view="grid" aria-pressed="false">缩略图</button><button type="button" id="demo-preview-toggle" aria-expanded="true" aria-controls="demo-preview">预览</button></div>
+              <label class="sr-only" for="demo-search">搜索示例文件</label><input type="search" id="demo-search" placeholder="搜索示例文件…" autocomplete="off">
+              <div class="demo-file-list" id="demo-file-list" aria-label="示例文件"></div>
+              <div class="demo-preview" id="demo-preview"><div class="preview-heading"><strong>只读预览</strong><span id="demo-preview-type">TXT</span></div><div id="demo-preview-content"></div></div>
+            </aside>
           </div>
         </div>
-        <p class="demo-note">授权范围内查找 · 工具执行可确认 · 中转文件可恢复</p>
+        <p class="demo-note" id="demo-disclaimer">本地模拟交互，不读取真实文件、不连接 AI 服务。<br>实际能力与界面以软件为准；截图识字从软件截图确认栏使用。</p>
+        <noscript><p class="demo-note">启用 JavaScript 后可体验文件预览与模拟对话。</p></noscript>
       </figure>
     </section>
 

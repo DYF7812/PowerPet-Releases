@@ -17,15 +17,12 @@
     },
     {
       id: 'image', name: '活动截图.png', type: 'PNG',
-      content: '设计分享会\n周五 14:00—16:00\n图书馆 · 302 室\n带上你的想法，一起交流。',
-      answer: '已提取截图中的文字（预设演示）\n\n设计分享会\n周五 14:00—16:00\n图书馆 · 302 室\n带上你的想法，一起交流。\n\n软件中可从截图确认栏运行 Windows 本机 OCR。',
     },
   ];
   const originalNames = files.map((file) => file.name);
   const scenarios = {
     summary: { title: '整理会议记录', file: 'meeting', prompt: '@会议记录.txt 帮我整理主要内容和待办事项。' },
     rename: { title: '文件重命名审批', file: 'meeting', prompt: '将 @会议记录.txt 重命名为「项目会议纪要.txt」。' },
-    ocr: { title: '体验截图识字', file: 'image', prompt: '识别 @活动截图.png 中的文字。' },
   };
   const transcript = find('transcript');
   const input = find('message');
@@ -51,7 +48,7 @@
     busy = value;
     find('send').disabled = value;
     find('stop').disabled = !value;
-    find('mention').disabled = value;
+    find('mention').disabled = value || selected.type === 'PNG';
     input.readOnly = value;
   }
 
@@ -88,6 +85,7 @@
 
   function renderFiles() {
     const list = find('file-list');
+    find('mention').disabled = busy || selected.type === 'PNG';
     const query = find('search').value.trim().toLowerCase();
     list.replaceChildren();
     for (const file of files.filter((item) => item.name.toLowerCase().includes(query))) {
@@ -97,7 +95,7 @@
       button.setAttribute('aria-label', `预览 ${file.name}`);
       button.title = file.name;
       const description = element('span', 'file-description');
-      description.append(element('strong', '', file.name), element('small', '', file.type === 'PNG' ? '图片素材 · 可识字' : '文本资料 · 可总结'));
+      description.append(element('strong', '', file.name), element('small', '', file.type === 'PNG' ? '图片素材 · 只读预览' : '文本资料 · 可总结'));
       button.append(element('span', `file-type${file.type === 'PNG' ? ' image' : ''}`, file.type), description);
       button.addEventListener('click', () => {
         selected = file;
@@ -106,7 +104,8 @@
         find('preview').hidden = false;
         find('preview-toggle').setAttribute('aria-expanded', 'true');
         renderPreview();
-        if (!busy) input.value = `@${file.name} ${file.type === 'PNG' ? '识别截图中的文字。' : '帮我总结这份文件。'}`;
+        find('mention').disabled = busy || file.type === 'PNG';
+        if (!busy) input.value = file.type === 'PNG' ? '' : `@${file.name} 帮我总结这份文件。`;
       });
       list.append(button);
     }
@@ -218,12 +217,12 @@
       if (/总结|整理|摘要|主要内容|待办/.test(message) && file.type !== 'PNG') {
         setTool('✓ 读取文件完成', `${file.name} · 使用内置示例内容`);
         showAnswer(file.answer);
-      } else if (/识别|识字|OCR|提取.*文字/i.test(message) && file.type === 'PNG') {
-        setTool('✓ 截图文字识别演示', '使用预设识别结果，未运行真实 OCR');
-        showAnswer(file.answer);
+      } else if (file.type === 'PNG') {
+        setTool('图片仅供预览', '请在文件中心查看示例图片');
+        showAnswer('图片只提供只读预览。请选择文本文件，或点击上方场景体验文本摘要和会议记录重命名。');
       } else {
         setTool('当前为预设演示', '不会调用真实模型或执行自定义指令');
-        showAnswer('这里可以体验文本摘要、会议记录重命名和截图识字。请点击上方场景按钮，再发送示例消息；完整对话能力可在软件中连接模型后使用。');
+        showAnswer('这里可以体验文本摘要和会议记录重命名。请点击上方场景按钮，再发送示例消息；完整对话能力可在软件中连接模型后使用。');
       }
     }, reducedMotion.matches ? 0 : 700);
   });
@@ -259,7 +258,7 @@
   }
   root.querySelectorAll('[data-view]').forEach((button) => button.addEventListener('click', () => setView(button.dataset.view)));
   find('mention').addEventListener('click', () => {
-    input.value = `@${selected.name} ${selected.type === 'PNG' ? '识别截图中的文字。' : '帮我总结这份文件。'}`;
+    input.value = `@${selected.name} 帮我总结这份文件。`;
     input.focus();
   });
   startScenario('summary');

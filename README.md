@@ -6,9 +6,9 @@ PowerPet 将 AI 对话、文件管理、临时文件中转和截图工具结合�
 
 **管理范围覆盖用户授权的本机文件和文件夹，包括文档、下载、项目目录及其他磁盘中的资料，不限于桌面文件夹。**
 
-[下载安装包](https://github.com/DYF7812/PowerPet-Releases/releases/download/v0.1.0/PowerPet-0.1.0-Setup.exe) · [版本与源码](https://github.com/DYF7812/PowerPet-Releases/releases/tag/v0.1.0) · [项目主页](https://dyf7812.github.io/PowerPet-Releases/) · [问题反馈](https://github.com/DYF7812/PowerPet-Releases/issues)
+[下载安装包](https://github.com/DYF7812/PowerPet-Releases/releases/download/v0.1.1/PowerPet-0.1.1-Setup.exe) · [版本与源码](https://github.com/DYF7812/PowerPet-Releases/releases/tag/v0.1.1) · [项目主页](https://dyf7812.github.io/PowerPet-Releases/) · [问题反馈](https://github.com/DYF7812/PowerPet-Releases/issues)
 
-本仓库用于公开分发安装包、版本说明、必要源码和项目主页。本文介绍已发布的 **0.1.0** 版本；后续版本的功能与下载以 [Releases](https://github.com/DYF7812/PowerPet-Releases/releases) 为准。
+本仓库用于公开分发安装包、版本说明、必要源码和项目主页。本文介绍已发布的 **0.1.1** 版本；后续版本的功能与下载以 [Releases](https://github.com/DYF7812/PowerPet-Releases/releases) 为准。
 
 ## 核心功能
 
@@ -54,7 +54,7 @@ PowerPet 将 AI 对话、文件管理、临时文件中转和截图工具结合�
 - 区域 / 可见窗口截图、手动滚动拼接，输出到剪贴板或中转站。
 - Windows 本机 OCR 识别截图文字，支持复制与中英翻译。
 
-**0.1.0 主包不包含本地翻译组件和模型，也尚未提供正式组件下载。** 本地翻译需要可信发布方提供 HTTPS 清单并由用户确认安装；MyMemory 需明确同意发送 OCR 文字。独立全局 OCR、翻译快捷键尚未开放，当前从截图确认栏使用。
+**0.1.1 主包不包含本地翻译组件和模型，也尚未提供正式组件下载。** 本地翻译需要可信发布方提供 HTTPS 清单并由用户确认安装；MyMemory 需明确同意发送 OCR 文字。独立全局 OCR、翻译快捷键尚未开放，当前从截图确认栏使用。
 
 ### 5. 桌面入口与个性化
 
@@ -72,7 +72,7 @@ PowerPet 将 AI 对话、文件管理、临时文件中转和截图工具结合�
 
 “设置 → 会话权限”按会话配置审批模式及文件范围，支持全部、部分或无需批准，以及仅中转站或外部只读白名单。
 
-“设置 → 扩展”管理全局 CLI、PowerShell 和 Skills，新增条目默认关闭。Skills 提供操作说明，登记或预览不会自动执行脚本。
+“设置 → 扩展”管理全局 CLI、PowerShell 和 Skills，新增条目默认关闭。可在“CLI 内置预设”中直接开启 PowerShell 并保存；优先检测 PowerShell 7，回退 Windows PowerShell，已有手动配置会继续使用。Skills 提供操作说明，登记或预览不会自动执行脚本。
 
 CLI 白名单限制可调用的程序入口，**不提供文件或网络隔离**，也不限制该程序启动后的脚本、插件及子进程。使用这类扩展时，应核对命令、参数和目标路径。
 
@@ -90,11 +90,11 @@ CLI 白名单限制可调用的程序入口，**不提供文件或网络隔离**
 
 支持 **Windows 10 1903+ / Windows 11 x64**，无需另装 Python、Node.js 或 Bun。本地文件中转与预览可独立使用，AI 需自行配置模型服务。
 
-1. 从 [0.1.0 Release](https://github.com/DYF7812/PowerPet-Releases/releases/tag/v0.1.0) 下载 `PowerPet-0.1.0-Setup.exe` 和 `SHA256SUMS.txt`。
+1. 从 [0.1.1 Release](https://github.com/DYF7812/PowerPet-Releases/releases/tag/v0.1.1) 下载 `PowerPet-0.1.1-Setup.exe` 和 `SHA256SUMS.txt`。
 2. 可在下载目录打开 PowerShell，执行下列命令，将结果与校验文件中的对应条目比较：
 
    ```powershell
-   Get-FileHash -LiteralPath .\PowerPet-0.1.0-Setup.exe -Algorithm SHA256
+   Get-FileHash -LiteralPath .\PowerPet-0.1.1-Setup.exe -Algorithm SHA256
    ```
 
 3. 运行安装程序并启动 PowerPet。当前程序与安装包未进行 Authenticode 签名，Windows 可能显示来源或信誉提示；请核对下载来源和校验值。
@@ -132,7 +132,7 @@ AI 会将对话及使用的文件内容发送给所选模型服务；联网搜�
 
 **为什么本地翻译不能下载？**
 
-0.1.0 尚未发布正式的本地翻译组件。没有可信且有效的组件清单时，本地下载不可用；可按需选择 MyMemory 并同意发送 OCR 文字。
+0.1.1 尚未发布正式的本地翻译组件。没有可信且有效的组件清单时，本地下载不可用；可按需选择 MyMemory 并同意发送 OCR 文字。
 
 **异常退出后如何取回文件？**
 
@@ -140,7 +140,7 @@ AI 会将对话及使用的文件内容发送给所选模型服务；联网搜�
 
 ## 当前版本与已知限制
 
-0.1.0 于 2026-09-14 首次公开发布，已完成打包、安装器编译、附件摘要核对及发布前 114 项定向自动化验证；该次发布未运行全量测试。
+0.1.1 新增 PowerShell CLI 内置预设。预设探测、保存、审批与本机调用的 51 项定向测试通过，另有 11 项打包检查通过；本次未运行全量测试。0.1.0 首次公开发布于 2026-09-14。
 
 - AI 属于实验能力，真实模型端到端场景尚未完成全部验收。
 - 干净 Windows 的安装、升级、卸载、完整主程序启动，以及真实跨卷、Explorer、多显示器和高 DPI 场景仍有未完成的人工验收项。
@@ -150,16 +150,16 @@ AI 会将对话及使用的文件内容发送给所选模型服务；联网搜�
 
 PowerPet 使用 **Python 3.12、PySide6 / Qt Widgets、SQLite**，通过自包含的 PowerPet Agent Host 接入 Pi SDK 的模型与工具调用能力，采用 PyInstaller `onedir` 打包。
 
-本仓库保存发布页和公开说明，应用源码以 Release 附件提供。0.1.0 采用最小分发，不重复上传便携 ZIP：
+本仓库保存发布页和公开说明，应用源码以 Release 附件提供。0.1.1 采用最小分发，不重复上传便携 ZIP：
 
 | 附件 | 用途 |
 |---|---|
-| `PowerPet-0.1.0-Setup.exe` | Windows x64 安装包。 |
+| `PowerPet-0.1.1-Setup.exe` | Windows x64 安装包。 |
 | `SHA256SUMS.txt` | 安装包与源码附件的 SHA-256 摘要。 |
-| `PowerPet-0.1.0-source.zip` | 当前版本必要应用源码和构建文件。 |
+| `PowerPet-0.1.1-source.zip` | 当前版本必要应用源码和构建文件。 |
 | `PowerPet-Pi-0.84.3-source.zip` | 该版本锁定的 Pi 源码。 |
 
-上述文件均可从 [0.1.0 Release](https://github.com/DYF7812/PowerPet-Releases/releases/tag/v0.1.0) 获取。应用源码对应提交 `60e26c9e758aadeec767f0fddd2cb8988fc35e4f`；快照不包含开发仓库历史或内部项目文档。重建方式和第三方依赖来源见随包说明及源码中的构建文件。
+上述文件均可从 [0.1.1 Release](https://github.com/DYF7812/PowerPet-Releases/releases/tag/v0.1.1) 获取。源码附件与本次安装包来自同一份独立构建快照；快照不包含开发仓库历史或内部项目文档。重建方式和第三方依赖来源见随包说明及源码中的构建文件。
 
 ## 许可证与反馈
 

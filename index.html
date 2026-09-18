@@ -31,7 +31,7 @@
   <main id="main">
     <section class="hero wrap" aria-labelledby="hero-title">
       <div class="intro">
-        <p class="eyebrow"><span class="dot" aria-hidden="true"></span> WINDOWS · POWERPET 0.1.0</p>
+        <p class="eyebrow"><span class="dot" aria-hidden="true"></span> WINDOWS · POWERPET 0.1.1</p>
         <h1 id="hero-title">管好文件，<br>从<span class="highlight">一句话</span>开始。</h1>
         <p class="lead">查找资料、阅读内容、整理文件。<br>让 AI 和文件中心一起，接住你的日常工作。</p>
         <p class="scope-note">面向用户授权的本机文件与文件夹，<br>从文档、下载到项目目录，以及其他磁盘中的资料。</p>
@@ -95,7 +95,7 @@
         <article><p class="permission-label">外部授权目录</p><h3>读取与复制入站</h3><p>按会话授权文件或目录。受管工具可列出、搜索、读取和复制入站，不能直接修改外部源文件。</p></article>
         <article><p class="permission-label">CLI / POWERSHELL</p><h3>显式启用的扩展</h3><p>以当前 Windows 用户权限执行，不提供文件或网络隔离。直接修改不进入中转站备份与恢复流程。</p></article>
       </div>
-      <p class="permission-note">在设置中分别管理会话审批与路径范围；全局 CLI / Skills 扩展新增时默认关闭，启用并保存后生效。</p>
+      <p class="permission-note">在设置中分别管理会话审批与路径范围；CLI 内置预设可直接启用本机 PowerShell，优先检测 PowerShell 7，回退 Windows PowerShell。全局扩展默认关闭，启用并保存后生效。</p>
       <aside class="safety"><span class="safety-icon" aria-hidden="true">!</span><p><strong>拖入中转站默认是剪切，文件会离开原位置。</strong>希望保留源文件时，请复制后粘贴入站。关闭窗口只是隐藏；正常退出请使用托盘菜单完成还原。中转站不替代长期备份。</p></aside>
     </section>
 
@@ -115,14 +115,14 @@
       <details><summary>不使用 AI 可以用吗？</summary><p>可以。文件中转、浏览预览、人工整理和本机截图可独立使用。AI 是可选的实验能力，需要自行配置模型服务，费用以服务商说明为准。</p></details>
       <details><summary>为什么关闭窗口后程序仍在运行？</summary><p>关闭窗口会隐藏到托盘。请从托盘选择“退出 PowerPet”并完成文件还原或保存；未处理的冲突、失败项和非空回收站会阻止退出。卸载保留应用数据，不能代替文件还原。</p></details>
       <details><summary>为什么 AI 读不到某个目录，或者不能修改外部文件？</summary><p>先检查当前会话的文件范围和授权路径。外部白名单对受管工具固定只读，需要受管修改时可先复制到中转站。CLI 的直接修改不受中转站备份和恢复机制保护。</p></details>
-      <details><summary>为什么本地翻译不能下载？</summary><p>0.1.0 未包含本地翻译组件和模型，尚未提供正式组件下载。没有可信的 HTTPS 组件清单时本地下载不可用；可以选择 MyMemory，并明确同意发送 OCR 文字。OCR 与翻译目前从截图确认栏使用，独立全局快捷键尚未开放。</p></details>
+      <details><summary>为什么本地翻译不能下载？</summary><p>0.1.1 未包含本地翻译组件和模型，尚未提供正式组件下载。没有可信的 HTTPS 组件清单时本地下载不可用；可以选择 MyMemory，并明确同意发送 OCR 文字。OCR 与翻译目前从截图确认栏使用，独立全局快捷键尚未开放。</p></details>
       <details><summary>异常退出后如何取回文件？</summary><p>重新启动后查看“操作与恢复”，按提示重试、恢复或处理冲突。保留现有副本，不要手动删除应用数据目录。通用撤销仅在当前会话有效，自由拖出不保证严格撤销，永久删除无法恢复。</p></details>
       <details id="privacy"><summary>哪些数据保存在本机，哪些会发送到网上？</summary><p>工作区、备份和会话保存在本机，模型凭据使用 Windows DPAPI 加密，OCR 在本机运行。AI 会将对话及使用的文件内容发送给所选模型服务；搜索发送查询词，网页读取访问目标网址，不使用浏览器登录态。MyMemory 经同意接收 OCR 文字，CLI 的网络行为由所执行程序决定。数据保留规则以服务商说明为准。</p></details>
     </section>
 
     <section id="download" class="download wrap" aria-labelledby="download-title">
-      <div><p class="eyebrow">POWERPET 0.1.0 · 首次公开版本</p><h2 id="download-title">让文件处理，更顺手。</h2><p>Windows 10 1903+ / 11 · x64 安装包</p><p class="download-note">程序与安装包未签名，AI 为实验能力。<br>干净 Windows、跨卷、Explorer、多屏高 DPI 和真实模型等场景尚未完成全部验收。<br>暂不支持屏幕录制、全局取词或自定义宠物外观。</p></div>
-      <div class="download-options"><a class="button primary" href="https://github.com/DYF7812/PowerPet-Releases/releases/download/v0.1.0/PowerPet-0.1.0-Setup.exe">下载安装包 <span aria-hidden="true">↓</span></a><a href="https://github.com/DYF7812/PowerPet-Releases/releases/download/v0.1.0/SHA256SUMS.txt">SHA-256 校验文件</a><a href="https://github.com/DYF7812/PowerPet-Releases/releases/tag/v0.1.0">版本说明与源码 <span aria-hidden="true">↗</span></a></div>
+      <div><p class="eyebrow">POWERPET 0.1.1 · PowerShell 内置预设</p><h2 id="download-title">让文件处理，更顺手。</h2><p>Windows 10 1903+ / 11 · x64 安装包</p><p class="download-note">程序与安装包未签名，AI 为实验能力。<br>干净 Windows、跨卷、Explorer、多屏高 DPI 和真实模型等场景尚未完成全部验收。<br>暂不支持屏幕录制、全局取词或自定义宠物外观。</p></div>
+      <div class="download-options"><a class="button primary" href="https://github.com/DYF7812/PowerPet-Releases/releases/download/v0.1.1/PowerPet-0.1.1-Setup.exe">下载安装包 <span aria-hidden="true">↓</span></a><a href="https://github.com/DYF7812/PowerPet-Releases/releases/download/v0.1.1/SHA256SUMS.txt">SHA-256 校验文件</a><a href="https://github.com/DYF7812/PowerPet-Releases/releases/tag/v0.1.1">版本说明与源码 <span aria-hidden="true">↗</span></a></div>
     </section>
   </main>
   <footer class="wrap"><div><a class="footer-brand" href="#">PowerPet</a><span>© 2026 PowerPet contributors</span></div><div><a href="https://github.com/DYF7812/PowerPet-Releases/blob/codex/release-page/LICENSE">MIT 许可证</a><a href="#privacy">数据与隐私</a><a href="https://github.com/DYF7812/PowerPet-Releases">GitHub <span aria-hidden="true">↗</span></a></div></footer>

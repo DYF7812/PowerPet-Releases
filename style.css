@@ -14,14 +14,14 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 28px; }
+html { scroll-behavior: smooth; scroll-padding-top: 125px; }
 body { margin: 0; }
 a { color: inherit; text-decoration: none; }
 a:hover { text-decoration: underline; }
 a:focus-visible, summary:focus-visible { outline: 3px solid var(--blue); outline-offset: 5px; border-radius: 4px; }
 img { display: block; }
 .wrap { width: min(1160px, calc(100% - 80px)); margin-inline: auto; }
-.skip { position: absolute; left: 20px; top: -80px; padding: 12px; background: var(--white); z-index: 10; }
+.skip { position: absolute; left: 20px; top: -80px; padding: 12px; background: var(--white); z-index: 40; }
 .skip:focus { top: 12px; }
 .nav { min-height: 96px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--line); }
 .brand { font: 600 25px "Bahnschrift", "Segoe UI", sans-serif; display: flex; align-items: center; gap: 8px; }
@@ -34,7 +34,7 @@ nav a { padding-block: 12px; }
 .eyebrow { font-size: 11px; font-weight: 650; letter-spacing: 1.6px; display: flex; align-items: center; gap: 9px; margin: 0 0 20px; line-height: 1.8; }
 .dot { width: 7px; height: 7px; background: #47745b; border-radius: 50%; }
 h1 { font-size: clamp(38px, 4.2vw, 58px); line-height: 1.32; letter-spacing: -2px; margin: 0 0 24px; font-weight: 750; }
-.highlight { box-shadow: inset 0 -14px var(--mint); }
+.highlight { background: linear-gradient(transparent calc(100% - 14px), var(--mint) 0) left / 100% 100% no-repeat; }
 .lead { font-size: 17px; line-height: 1.9; color: var(--muted); margin: 0 0 18px; }
 .scope-note { font-size: 13px; line-height: 1.9; color: var(--muted); margin: 0 0 28px; }
 .actions { display: flex; align-items: center; flex-wrap: wrap; gap: 24px; }
@@ -272,6 +272,49 @@ footer div { display: flex; align-items: center; flex-wrap: wrap; gap: 22px; }
   .scope-note br { display: none; }
 }
 
+/* 整页动效保持自然滚动，默认正文始终可见。 */
+.reading-progress { position: fixed; inset: 0 0 auto; height: 3px; z-index: 30; pointer-events: none; background: #5B61D6; transform: scaleX(0); transform-origin: left; }
+.nav { position: sticky; top: 0; z-index: 20; background: #f6f9fbeb; backdrop-filter: blur(16px); border-radius: 0 0 16px 16px; transition: box-shadow .3s, background .3s; }
+.nav.is-scrolled { background: #f6f9fbf5; box-shadow: 0 12px 24px -20px #30364a70; }
+.nav nav a { position: relative; transition: color .22s; }
+.nav nav a::after { content: ''; position: absolute; bottom: 5px; left: 0; width: 100%; height: 2px; background: #5B61D6; transform: scaleX(0); transform-origin: left; transition: transform .28s cubic-bezier(.22,1,.36,1); }
+.nav nav a:hover::after, .nav nav a:focus-visible::after, .nav nav a[aria-current]::after { transform: scaleX(1); }
+.nav nav a[aria-current] { color: #4A50C2; }
+.button { position: relative; overflow: hidden; isolation: isolate; transition: transform .25s, background .25s, box-shadow .25s; }
+.button::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(110deg, transparent 25%, #ffffff24 50%, transparent 75%); transform: translateX(-120%); }
+.button:hover::before, .button:focus-visible::before { animation: button-sheen .7s ease-out; }
+.button > span, .text-link > span { display: inline-block; transition: transform .25s; }
+.button:hover > span { transform: translateY(2px); }
+.text-link:hover > span { transform: translate(2px, -2px); }
+.feature-grid article, .permission-grid article { transition: background .3s, border-color .3s; }
+.feature-symbol { transition: transform .3s, background .3s, box-shadow .3s; }
+.feature-grid article:focus-within .feature-symbol { background: #E4E6FA; box-shadow: 0 5px 14px #5b61d617; }
+.permission-grid article:focus-within { border-top-color: #5B61D6; }
+.steps li > span { transition: color .25s, transform .25s; }
+.faq details { transition: border-color .25s, background .25s; }
+.faq details[open] { border-bottom-color: #b5b9e4; }
+.faq summary { position: relative; list-style: none; padding-right: 32px; transition: color .22s; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::before, .faq summary::after { content: ''; position: absolute; right: 6px; top: 12px; width: 12px; height: 1.5px; background: #5B61D6; transition: transform .25s; }
+.faq summary::after { width: 1.5px; height: 12px; right: 11px; top: 7px; }
+.faq details[open] summary::after { transform: scaleY(0); }
+.faq summary:hover, .faq details[open] summary { color: #4A50C2; }
+@supports (interpolate-size: allow-keywords) {
+  .faq details { interpolate-size: allow-keywords; }
+  .faq details::details-content { block-size: 0; opacity: 0; overflow: clip; transition: block-size .32s cubic-bezier(.22,1,.36,1), opacity .25s, content-visibility .32s allow-discrete; }
+  .faq details[open]::details-content { block-size: auto; opacity: 1; }
+}
+@media (hover: hover) and (pointer: fine) {
+  .feature-grid article:hover .feature-symbol { transform: translateY(-4px); background: #E4E6FA; box-shadow: 0 7px 18px #5b61d61a; }
+  .permission-grid article:hover { border-top-color: #5B61D6; background: #eceefa50; }
+  .steps li:hover > span { color: #5B61D6; transform: translateX(3px); }
+}
+@keyframes button-sheen { to { transform: translateX(120%); } }
+@media print {
+  .nav { position: static; }
+  .reading-progress { display: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .button { transition: none; }
@@ -279,4 +322,11 @@ footer div { display: flex; align-items: center; flex-wrap: wrap; gap: 22px; }
   .workspace-demo *, .workspace-demo *::after, .workspace-demo *::before { animation: none !important; transition: none !important; }
   .workspace-demo button:active:not(:disabled) { transform: none; }
   .primary:hover { transform: none; }
+  .nav, .nav nav a, .nav nav a::after, .button, .button > span, .text-link > span,
+  .feature-grid article, .permission-grid article, .feature-symbol, .steps li > span,
+  .faq details, .faq summary, .faq summary::before, .faq summary::after,
+  .faq details::details-content { transition: none; }
+  .button:hover::before, .button:focus-visible::before { animation: none; }
+  .button:hover > span, .text-link:hover > span, .feature-grid article:hover .feature-symbol,
+  .steps li:hover > span { transform: none; }
 }
